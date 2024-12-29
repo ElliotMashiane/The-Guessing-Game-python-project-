@@ -39,7 +39,7 @@ def reset_game():
     global secret_number, attempt
     secret_number = random.randint(1, 10)
     attempt = 0
-    result_label.config(text="Result: None")
+    result_label.config(text="")
     number_disp_label.config(text="Selected: None")
     for button in buttons:
         button.config(state=NORMAL)
@@ -48,38 +48,9 @@ def reset_game():
 window = Tk()
 
 window.geometry("420x420")
+window.resizable(False, False)
 window.title("The Number Guessing Game")
 window.config(background="#6e809c")
-
-# Create labels
-timer_label = Label(window, text="Timer:", font=(
-    'Arial', 10, 'bold'), bg='#6e809c')
-timer_label.place(x=0, y=0)
-
-attempt_label = Label(window, text="Attempts:", font=(
-    'Arial', 10, 'bold'), bg='#6e809c')
-attempt_label.place(x=0, y=20)
-
-# Create a label to display the countdown
-time_display_lbl = Label(window, text="30 seconds",
-                         font=('Arial', 10, 'bold'), bg='#6e809c')
-time_display_lbl.place(x=50, y=0)
-
-# Countdown function
-
-
-def countdown(seconds=30):
-    if seconds >= 0:
-        time_display_lbl.config(text=f"{seconds:02d} seconds")
-        window.after(1000, countdown, seconds - 1)
-    else:
-        time_display_lbl.config(text="Time's up!")
-        disable_buttons()
-
-
-# Start button
-start_button = Button(window, text='Start Game', command=lambda: countdown(30))
-start_button.pack()
 
 # Label For welcoming note
 welcome_label = Label(window, text='Welcome to the Guess the number Game!')
@@ -126,8 +97,8 @@ number_disp_label = Label(window, text="Selected: None",
 number_disp_label.place(x=220, y=220)
 
 # Create a label to display the result
-result_label = Label(window, text="Result: None",
-                     font=('Arial', 12), bg='#d5e2e6')
+result_label = Label(window, text="",
+                     font=('Arial', 12), bg='#6e809c')
 result_label.place(x=60, y=380)
 
 # Reset button
